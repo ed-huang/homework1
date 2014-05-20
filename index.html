@@ -1,0 +1,67 @@
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		html, input  {
+			font-family: 'Indie Flower', cursive;
+		}
+		.container {
+			text-align: center;
+			margin-top: 100px;
+			border: 1px solid;
+			padding-top: 20px;
+			font-size: 1.5em;
+		}
+		.heading {
+			font-size: 2em;
+		}
+		input {
+			font-size: 1.2em;
+		}
+	</style>
+	<script type="text/javascript">
+		function showAndClearField(frm, btn) {
+			
+			var xval = frm.xvalue.value;
+			var yval = frm.yvalue.value;
+			var sumVal = document.getElementById('sumDifference');
+				
+			if(validate(xval) && validate(yval)) {
+				var x = Number(xval);
+				var y = Number(yval);
+				if(btn === 'add') {
+					sumVal.innerHTML = "x + y = " + Number(x+y);
+					// sumVal.innerHTML = x + y;	
+				}
+				else {
+					sumVal.innerHTML = "x - y = " + Number(x-y);
+				}
+			}
+			else {
+				alert("invalid input");
+			}
+		}
+
+		function validate(val) {
+			if(val.search(/^(?!\s*$)[0-9\s]/) === -1) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<div class="container">
+		<span class="heading">Adder/Subtractor</span>
+		<form action="javascript:void(0);">
+  			x = <input type="text" name="xvalue" value="Enter an Integer"><br>
+  			y = <input type="text" name="yvalue" value="Enter an Integer"><br>
+  		<input type="submit" value="+" onClick="showAndClearField(this.form, 'add')"><input type="submit" value="-" onClick="showAndClearField(this.form, 'subtract')"><br>
+  		<span id="sumDifference">X minus / plus Y is Z</span>
+		</form>
+	</div>
+</body>
+</html>
